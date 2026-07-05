@@ -29,37 +29,3 @@ flowchart LR
     
     H -->|Wi-Fi HTTP GET| I[(ThingSpeak Dashboard)]
 
-## Hardware Setup
-
-Microcontroller: ESP8266 NodeMCU 1.0 (ESP-12E)
-
-Current Sensor: ACS712-05B (185 mV/A sensitivity)
-
-Physical Interface: Modified 4-socket Indian-type (BS 546) extension board
-
-Data Collection Node: Arduino UNO (used strictly for stable 500 Hz offline data acquisition)
-
-## Software & Toolchain
-Edge Impulse Studio: For spectral DSP configuration, model training, and C++ library generation.
-
-Arduino IDE / VS Code: For firmware compilation and deployment.
-
-Python 3: For segmenting raw serial dumps into timestamped 200-sample windows.
-
-ThingSpeak: For live IoT data visualization.
-
-## Performance & Results
-The model was trained to identify five specific load classes: No Load, Phone Charger, Laptop Charger, Pedestal Fan, and Electric Kettle.
-
-Validation Accuracy: 91.0%
-
-Real-world Performance: 100% recall on high-power loads (Fan, Kettle, Laptop) with confidence scores > 0.99.
-
-Note: Occasional confusion exists between the idle 'No Load' state and a low-power phone charger due to the 10-bit ADC hardware limitation of the ESP8266.
-
-## Future Scope
-Upgrading to an external 16-bit ADC (e.g., ADS1115) to improve low-current feature resolution.
-
-Expanding the appliance dataset.
-
-Implementing HTTPS/TLS for secure IoT telemetry.
